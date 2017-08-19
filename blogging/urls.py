@@ -14,14 +14,20 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,RedirectView
 from organizer.urls import (tag as tag_urls, department as department_urls)
+from blog import urls as blog_urls
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$',TemplateView.as_view(template_name='organizer/base_organizer.html')),
+    url(r'^$',
+        RedirectView.as_view(
+            pattern_name='blog_post_list',
+            permanent=False)),
+    #url(r'^$',TemplateView.as_view(template_name='organizer/base_organizer.html')),
     url(r'^tag/',include(tag_urls)),
     url(r'^department/',include(department_urls)),
+    url(r'^blog/',include(blog_urls)),
 
 ]

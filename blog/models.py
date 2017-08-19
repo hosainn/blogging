@@ -1,5 +1,6 @@
 from django.db import models
 from organizer.models import Tag, Department
+from django.core.urlresolvers import reverse
 # Create your models here.
 #################
 
@@ -30,3 +31,12 @@ class Post(models.Model):
         return '{} on {}'.format(
             self.title,
             self.pub_date.strftime('%Y-%m-%d'))
+
+    def get_absolute_url(self):
+        return reverse('blog_post_detail', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse('blog_post_update', kwargs={'slug':self.slug})
+
+    def get_delete_url(self):
+        return reverse('blog_post_delete',kwargs={'slug':self.slug})

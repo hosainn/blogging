@@ -59,8 +59,16 @@
 {% endblock %}
 
 {% block button %}
-     <article>
+    {% if department.blog_posts.all %}
+        <h2>Blog Post{{ department.blog_posts.all|pluralize }}</h2>
+            <ul>
+              {% for post in department.blog_posts.all %}
+                <li>
+                  <a href="{{ post.get_absolute_url }}">
+                    {{ post.title|title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
 
-
-     </article>
+    {% endif %}
 {% endblock %}

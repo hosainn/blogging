@@ -1,0 +1,25 @@
+{% extends parent_template|default:"blog/base_blog.html" %}
+
+
+
+
+{% block title %}
+                    Post_update
+{% endblock %}
+
+ {% block blog_title %}
+ <h2>Post Update</h2>
+ {% endblock %}
+
+{% block content %}
+
+  <form action="{{post.get_update_url}}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button-primary" type="submit">Post Update</button>
+  </form>
+
+
+{% endblock %}
+
+

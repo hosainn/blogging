@@ -1,24 +1,24 @@
  {% extends parent_template|default:"organizer/base_organizer.html" %}
 
 {% block title %}
-          Delete Tag
+          Delete Post
 {% endblock %}
 
  {% block heading %}
- <h2>{{tag.name|title}}</h2>
+ <h2>{{post.title|title}}</h2>
  {% endblock %}
 
 {% block content %}
 
 
-      <form action="{{ tag.get_delete_url }}" method="post">
+      <form action="{{ post.get_delete_url }}" method="post">
         {% csrf_token %}
         <p>
           Are you sure you want to delete
           tag {{ tag.name }}?
         </p>
-        <a href="{{ tag.get_absolute_url }}" class="button button-primary">Cancel</a>
-        <button type="submit">Delete Tag</button>
+        <a href="{{ post.get_absolute_url }}" class="button button-primary">Cancel</a>
+        <button type="submit">Delete Post</button>
       </form>
 
 
