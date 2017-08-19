@@ -33,7 +33,7 @@
       </p>
       <ul>
         {% for department in tag.department_set.all %}
-          <li><a href="">
+          <li><a href="{{department.get_absolute_url}}">
             {{ department.name }}
           </a></li>
         {% endfor %}

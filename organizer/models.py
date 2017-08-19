@@ -50,6 +50,16 @@ class Department(models.Model):
     def __str__(self):
         return self.name
 
+
+    def get_absolute_url(self):
+        return reverse('organizer_department_detail',kwargs={'slug':self.slug})
+
+    def get_delete_url(self):
+        return reverse('organizer_department_delete',kwargs={'slug':self.slug})
+
+    def get_update_url(self):
+        return reverse('organizer_department_update',kwargs={'slug':self.slug})
+
 class NewsLink(models.Model):
     title = models.CharField(max_length=63)
     slug = models.SlugField(max_length=63)

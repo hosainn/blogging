@@ -1,0 +1,39 @@
+{% extends parent_template|default:"organizer/base_organizer.html" %}
+
+{% block title %}
+         {{ startup.name }}
+{% endblock %}
+
+{% block heading %}
+   <h2>{{ department.name }}</h2>
+   <ul class="inline">
+       <a href="{{department.get_update_url}}" class="button">Edit Dept</a>
+       <a href="{{department.get_delete_url}}" class="button">Delete Dept</a>
+   </ul>
+{% endblock %}
+
+
+{% block content %}
+<article>
+    <dl>
+    <dt>Date Founded</dt>
+      <dd>{{ department.founded_date|date:"F jS, Y" }}</dd>
+    <dt>Website</dt>
+      <dd>{{ department.website|urlize }}</dd>
+    <dt>Contact</dt>
+      <dd>{{ department.contact }}</dd>
+        <dt>Tag{{ department.tags.count|pluralize }}</dt>
+        {% for tag in department.tags.all %}
+          <dd><a href="{{ tag.get_absolute_url }}">
+            {{ tag.name|title }}
+          </a></dd>
+        {% endfor %}
+
+  </dl>
+
+  {{ startup.description|linebreaks }}
+
+
+
+</article>
+{% endblock %}

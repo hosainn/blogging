@@ -1,0 +1,34 @@
+{% extends parent_template|default:"organizer/base_organizer.html" %}
+
+{% block title %}
+          Department List
+{% endblock %}
+
+
+{% block heading %}
+       <h2>Department List</h2>
+{% endblock %}
+
+
+{% block button %}
+        <a href="{% url 'organizer_department_create' %}" class="button button-primary">Create New Department</a>
+{% endblock %}
+
+{% block content %}
+
+  <ul>
+    {% for department in department_list %}
+      <li>
+        <a href=" {{ department.get_absolute_url }}">{{ department.name|title }}</a>
+
+          <ul class="inline">
+              <a href="{{department.get_update_url}}" class="button">Edit Dept</a></li>
+              <a href="{{department.get_delete_url}}" class="button">Delete Dept</a></li>
+          </ul>
+      </li>
+    {% empty %}
+      <li><em>There are currently no Department available.</em></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
