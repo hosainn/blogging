@@ -15,8 +15,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.views.generic import TemplateView
+from organizer.urls import (tag as tag_urls)
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$',TemplateView.as_view(template_name='site/base.html')),
+    url(r'^$',TemplateView.as_view(template_name='organizer/base_organizer.html')),
+    url(r'^tag/',include(tag_urls)),
 ]

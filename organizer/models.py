@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -15,6 +16,15 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name.title()
+
+    def get_absolute_url(self):
+        return reverse('organizer_tag_detail',kwargs={'slug':self.slug})
+
+    def get_update_url(self):
+        return reverse('organizer_tag_update',kwargs={'slug':self.slug})
+
+    def get_delete_url(self):
+        return reverse('organizer_tag_delete',kwargs={'slug':self.slug})
 
 
 

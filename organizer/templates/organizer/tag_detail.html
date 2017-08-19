@@ -1,0 +1,58 @@
+{% extends parent_template|default:"organizer/base_organizer.html" %}
+
+{% block title %}
+         {{ tag.name|title }}
+{% endblock %}
+
+
+{% block heading %}
+         <h2>{{ tag.name|title }}</h2>
+             <ul class="inline">
+                 <a href="{{ tag.get_update_url }}" class="button">Edit Tag</a>
+                 <a href="{{ tag.get_delete_url }}" class="button">Delete Tag</a>
+             </ul>
+
+{% endblock %}
+
+{% block button %}
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+  {% if tag.department_set.all %}
+    <section>
+      <h3>Department{{ tag.department_set.count|pluralize }}</h3>
+      <p>
+        Tag is associated with
+        {{ tag.department_set.count }}
+        department{{ tag.department_set.count|pluralize }}.
+      </p>
+      <ul>
+        {% for department in tag.department_set.all %}
+          <li><a href="">
+            {{ department.name }}
+          </a></li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+      {% if tag.blog_posts.all %}
+        <section>
+          <h3>Blog Post{{ tag.blog_posts.count|pluralize }}</h3>
+          <ul>
+            {% for post in tag.blog_posts.all %}
+              <li><a href="">
+                {{ post.title|title }}
+              </a></li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+      {% if not tag.department_set.all and not tag.blog_posts.all %}
+        <p>This tag is not related to any content.</p>
+      {% endif %}
+{% endblock %}

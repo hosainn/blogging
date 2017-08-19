@@ -1,0 +1,25 @@
+ {% extends parent_template|default:"organizer/base_organizer.html" %}
+
+
+
+
+{% block title %}
+                    Tag update
+{% endblock %}
+
+ {% block heading %}
+ <h2>Tag Update</h2>
+ {% endblock %}
+
+{% block content %}
+
+  <form action="{{tag.get_update_url}}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button-primary" type="submit">Update Tag</button>
+  </form>
+
+
+{% endblock %}
+
+
