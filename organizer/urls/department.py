@@ -1,5 +1,6 @@
 from django.conf.urls import include,url
-from organizer.views import DepartmentCreate,DepartmentList,DepartmentDetail,DepartmentDelete,DepartmentUpdate
+from organizer.views import (DepartmentCreate,DepartmentList,DepartmentDetail,NewsLinkUpdate,
+                             DepartmentDelete,DepartmentUpdate,NewsLinkCreate,NewsLinkDelete)
 
 
 
@@ -12,6 +13,10 @@ urlpatterns = [
         DepartmentCreate.as_view(),
         name='organizer_department_create'),
 
+    url(r'^(?P<dept_slug>[\w\-]+)/add_link/$',
+        NewsLinkCreate.as_view(),
+        name='department_newslink_create'),
+
     url(r'^(?P<slug>[\w\-]+)/detail/$',
         DepartmentDetail.as_view(),
         name='organizer_department_detail'),
@@ -23,4 +28,16 @@ urlpatterns = [
     url(r'^(?P<slug>[\w\-]+)/update/$',
         DepartmentUpdate.as_view(),
         name='organizer_department_update'),
+
+    url(r'^(?P<department_slug>[\w\-]+)/'
+        r'(?P<newslink_slug>[\w\-]+)/'
+        r'delete/$',
+        NewsLinkDelete.as_view(),
+        name='department_newslink_delete'),
+
+    url(r'^(?P<department_slug>[\w\-]+)/'
+        r'(?P<newslink_slug>[\w\-]+)/'
+        r'update/$',
+        NewsLinkUpdate.as_view(),
+        name='department_newslink_update'),
 ]

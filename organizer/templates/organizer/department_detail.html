@@ -35,5 +35,32 @@
 
 
 
+      {% if department.newslink_set.all %}
+         <h2>Recent News </h2>
+         {% endif %}
+         <a href="{{ department.get_newslink_create_url }}" class="button button-primary">Add article</a>
+
+
+            <ul>
+              {% for newslink in department.newslink_set.all %}
+                <li>
+                  <a href="{{ newslink.link }}">{{ newslink.title|title }}</a>
+                </li>
+                    <a href="{{newslink.get_update_url}}" class="button">Edit Link</a>
+                    <a href="{{newslink.get_delete_url}}" class="button">Delete Link</a>
+
+              {% endfor %}
+            </ul>
+
+
+
+
 </article>
+{% endblock %}
+
+{% block button %}
+     <article>
+
+
+     </article>
 {% endblock %}

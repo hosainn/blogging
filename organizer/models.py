@@ -60,6 +60,9 @@ class Department(models.Model):
     def get_update_url(self):
         return reverse('organizer_department_update',kwargs={'slug':self.slug})
 
+    def get_newslink_create_url(self):
+        return reverse('department_newslink_create',kwargs={'dept_slug':self.slug})
+
 class NewsLink(models.Model):
     title = models.CharField(max_length=63)
     slug = models.SlugField(max_length=63)
@@ -79,5 +82,19 @@ class NewsLink(models.Model):
     def __str__(self):
         return '{}: {}'.format(self.department,
                                self.title)
+
+
+    def get_absolute_url(self):
+        return self.department.get_absolute_url()
+
+    def get_delete_url(self):
+        return reverse('department_newslink_delete',
+                       kwargs={'department_slug':self.department.slug,'newslink_slug':self.slug})
+
+    def get_update_url(self):
+        return reverse('department_newslink_update',
+                       kwargs={'department_slug':self.department.slug,'newslink_slug':self.slug})
+
+
 
 

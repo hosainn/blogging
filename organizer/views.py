@@ -52,4 +52,20 @@ class NewsLinkCreate(CreateView):
     form_class = NewsLinkForm
 
 
+class NewsLinkDelete(DeleteView):
+    model = NewsLink
+    slug_url_kwarg = 'newslink_slug'
+
+    def get_success_url(self):
+        return (self.object.department.get_absolute_url())
+
+class NewsLinkUpdate(UpdateView):
+    model = NewsLink
+    form_class = NewsLinkForm
+    slug_url_kwarg = 'newslink_slug'
+    template_name_suffix = '_form_update'
+
+
+
+
 
