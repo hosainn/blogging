@@ -3,6 +3,7 @@ from django.views.generic import CreateView,DetailView,ListView,DeleteView,Updat
 from .models import Tag,Department,NewsLink
 from .forms import TagForm,DepartmentForm,NewsLinkForm
 from django.core.urlresolvers import reverse_lazy
+from django.core.paginator import Paginator
 # Create your views here.
 
 class TagCreate(CreateView):
@@ -13,6 +14,7 @@ class TagDetail(DetailView):
     model = Tag
 
 class TagList(ListView):
+    paginate_by = 3
     model = Tag
 
 class TagUpdate(UpdateView):
@@ -30,6 +32,7 @@ class DepartmentCreate(CreateView):
     form_class = DepartmentForm
 
 class DepartmentList(ListView):
+    paginate_by = 3
     model = Department
 
 

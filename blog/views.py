@@ -4,14 +4,17 @@ from django.views.generic import (CreateView,ListView,ArchiveIndexView,
 from .models import Post
 from .forms import PostForm
 from django.core.urlresolvers import reverse_lazy
+from django.core.paginator import Paginator
 
 # Create your views here.
 class PostArchiveYear(YearArchiveView):
+    paginate_by = 3
     model = Post
     date_field = 'pub_date'
     make_object_list = True
 
 class PostArchiveMonth(MonthArchiveView):
+    paginate_by = 3
     model = Post
     date_field = 'pub_date'
     month_format = '%m'
@@ -26,6 +29,7 @@ class PostDetail(DetailView):
     model = Post
 
 class PostList(ArchiveIndexView):
+    paginate_by = 3
     allow_empty = True
     #allow_future = True
     date_field = 'pub_date'

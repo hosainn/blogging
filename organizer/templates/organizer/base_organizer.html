@@ -47,6 +47,13 @@
       </div>
     </div>
 
+
+
+
+
+
+
+
     <div class="container">
 
       <div class="row">
@@ -55,7 +62,31 @@
           {% block content %}
           {% endblock %}
 
-           
+           <nav class="blog-pagination">
+
+             {% if is_paginated %}
+
+                <div class="pagination">
+                    <span class="step-links">
+                       {% if page_obj.has_previous %}
+                            <a  class="btn btn-outline-primary"
+                                href="?page={{ page_obj.previous_page_number }}">
+                              prev</a>
+                       {% endif %}
+
+                    <span class="current">
+                           Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+               {% if page_obj.has_next %}
+                     <a class="btn btn-outline-primary"
+                        href="?page={{ page_obj.next_page_number }}">
+                       next</a>
+               {% endif %}
+                   </span>
+           </div>
+             {% endif %}
+           </nav>
         </div><!-- /.blog-main -->
 
            <div class="col-sm-3 offset-sm-1 blog-sidebar">
