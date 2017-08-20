@@ -4,13 +4,12 @@
 
 
 {% block title %}
-                    Blog
+                    {{ year|date:"Y" }} Posts
 {% endblock %}
 
   {% block blog_title %}
+        <h2>All Posts for {{ year|date:"Y" }}</h2>
 
-        <h1 class="blog-title">The MIU Blog</h1>
-        <p class="lead blog-description">An example blog site of Manarat International University.</p>
 
   {% endblock %}
 
@@ -46,13 +45,13 @@
 {% endblock %}
 
 {% block archive %}
-    <h3>Post Archives</h3>
-      <ul>
-        {% for y in date_list %}
-          <li><a href="{% url 'blog_post_archive_year' y|date:"Y" %}">
-            {{ y|date:"Y" }}</a></li>
-        {% endfor %}
-      </ul>
+   <h3>Archives by Month</h3>
+    <ul>
+      {% for m in date_list %}
+      <li><a href="{% url 'blog_post_archive_month' m|date:"Y" m|date:"n" %}">
+          {{ m|date:"F Y" }}</a></li>
+      {% endfor %}
+    </ul>
 {% endblock %}
 
 
