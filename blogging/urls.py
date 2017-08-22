@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView,RedirectView
 from organizer.urls import (tag as tag_urls, department as department_urls)
 from blog import urls as blog_urls
+from contact import urls as contact_urls
 
 
 urlpatterns = [
@@ -29,5 +30,6 @@ urlpatterns = [
     url(r'^tag/',include(tag_urls)),
     url(r'^department/',include(department_urls)),
     url(r'^blog/',include(blog_urls)),
+    url(r'^contact',include(contact_urls)),
 
 ]

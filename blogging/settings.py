@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'blog',
     'organizer',
+    'contact',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,6 +83,15 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
+# Email
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SERVER_EMAIL = 'contact@django.com'
+DEFAULT_FROM_EMAIL = 'no-reply@django.com'
+EMAIL_SUBJECT_PREFIX = '[MIU blogging] '
+MANAGERS = ( ('Us', 'ourselves@django.com'), )
 
 
 # Internationalization
